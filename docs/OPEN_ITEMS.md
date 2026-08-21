@@ -16,10 +16,12 @@ These are the only expected unresolved inputs after blueprint lock.
 
 3. Final caption-to-photo mapping after visual review.
 
-4. Supabase project:
-   - URL
-   - publishable key
-   - SQL from `SUPABASE.md` executed and security-tested.
+4. M14 manual device acceptance:
+   - airplane mode -> Send -> close app/process -> reconnect
+   - confirm eventual delivery creates exactly one row
+   - confirm Keep Local creates zero rows
+
+5. Remove development Supabase rows listed in `AI_HANDOFF.md` before release.
 
 ## Optional
 - `[AUTHOR_NAME]` for signature/display
@@ -34,3 +36,6 @@ Audio is not a release blocker. If absent, use a no-op/silent AudioController an
 - World rendering uses layered Views + Canvas effects.
 - Wish can continue to finale while PENDING_SEND.
 - Birthday Entrance is first-launch only.
+- Supabase migration has been applied by the user.
+- M13 INSERT-only grant/RLS behavior has been live-tested.
+- Supabase runtime values are supplied outside Git through `ALIA_SUPABASE_URL` and `ALIA_SUPABASE_PUBLISHABLE_KEY`.

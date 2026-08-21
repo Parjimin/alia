@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
             screenHost = binding.screenHost,
             globalOverlayHost = binding.globalOverlayHost,
             stateRepository = container.appStateRepository,
-            wishRepository = container.wishRepository,
+            wishDeliveryOrchestrator = container.wishDeliveryOrchestrator,
             content = container.birthdayContent,
         )
         onBackPressedDispatcher.addCallback(

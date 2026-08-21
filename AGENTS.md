@@ -5,6 +5,9 @@
 
 This repository is specification-driven. Read the relevant document under `docs/` before changing behavior. Do not invent product behavior, personal copy, visual direction, or architecture when already specified.
 
+## Continuation handoff
+When resuming an existing implementation, read `docs/AI_HANDOFF.md` and `docs/MILESTONE_STATUS.md` before selecting work. They identify the current branch, completed milestones, validation evidence, known manual gates, and the exact next milestone. They summarize current state but do not override the canonical product specifications below.
+
 ## Source of truth
 - `docs/PRODUCT.md`
 - `docs/UX_FLOW.md`

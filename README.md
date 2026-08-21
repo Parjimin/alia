@@ -6,13 +6,24 @@ The repository contains the canonical product handoff and the native Android imp
 
 ## Start here
 
-1. Read `AGENTS.md` and the relevant specification under `docs/`.
-2. Do **not** overwrite anything in `design-assets/master/`.
-3. Implement one roadmap milestone at a time.
+1. Read `docs/AI_HANDOFF.md` for the current resume point.
+2. Read `AGENTS.md`, `docs/MILESTONE_STATUS.md`, and the relevant canonical specifications.
+3. Do **not** overwrite anything in `design-assets/master/`.
+4. Implement one roadmap milestone at a time.
 
 ## Development status
 
-Implementation is complete through the local M13 Supabase integration checkpoint:
+Implementation and automated validation are complete through the local M14 offline-delivery checkpoint. One M14 actual-device airplane-mode/process-close/reconnect acceptance gate remains explicitly open.
+
+Current continuation links:
+
+- Resume branch: `codex/m14-offline-delivery`
+- Draft PR: <https://github.com/Parjimin/alia/pull/1>
+- Next milestone: M15 — Finale
+- Full handoff: [`docs/AI_HANDOFF.md`](docs/AI_HANDOFF.md)
+- Milestone ledger: [`docs/MILESTONE_STATUS.md`](docs/MILESTONE_STATUS.md)
+
+Implemented foundation and features include:
 
 - a single-Activity coordinator and lightweight navigation history
 - a screen factory with temporary milestone surfaces
@@ -44,9 +55,11 @@ Implementation is complete through the local M13 Supabase integration checkpoint
 - INSERT-only Supabase REST client using one persisted UUID per logical Wish
 - exact `request_id` + `message` payload with no Wish-body logging
 - confirmed `23505` duplicate classification without treating every HTTP 409 as success
-
-M13 still requires live Supabase grant/RLS verification before it can be marked complete. Offline
-WorkManager delivery remains intentionally deferred to M14.
+- unique network-constrained WorkManager retry for persisted `PENDING_SEND`
+- process-restart recovery with the same persisted request UUID
+- retry classification that stops permanent failures without dropping local payload
+- Keep Local protection with no API call or worker
+- 74 passing unit tests at the M14 CI checkpoint
 
 Toolchain:
 
@@ -97,7 +110,7 @@ These do not block early development:
 - `alia_01.webp` ... `alia_06.webp` — six square Alia photos
 - `author.webp` — one square author photo
 - `[AUTHOR_NAME]` — optional display/signature name
-- Supabase URL + publishable key — needed for backend milestone
+- Supabase URL + publishable key — configured outside Git; migration and M13 security validation completed
 - Audio files — optional enhancement, not a release blocker unless later supplied
 
 ## Important consistency decisions

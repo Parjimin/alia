@@ -98,6 +98,7 @@ class DataStoreAppStateRepository(
             preferences[Keys.WISH_STATE] = WishState.KEPT_LOCAL.name
             preferences.remove(Keys.PENDING_WISH_REQUEST_ID)
             preferences.remove(Keys.PENDING_WISH_MESSAGE)
+            preferences.remove(Keys.PENDING_WISH_RETRY_ENABLED)
             accepted = true
         }
         return accepted
@@ -121,6 +122,7 @@ class DataStoreAppStateRepository(
                     preferences[Keys.WISH_STATE] = WishState.PENDING_SEND.name
                     preferences[Keys.PENDING_WISH_REQUEST_ID] = newRequestId
                     preferences[Keys.PENDING_WISH_MESSAGE] = message
+                    preferences[Keys.PENDING_WISH_RETRY_ENABLED] = true
                 }
 
                 WishState.PENDING_SEND -> {
@@ -154,6 +156,22 @@ class DataStoreAppStateRepository(
             preferences[Keys.WISH_STATE] = WishState.SENT.name
             preferences.remove(Keys.PENDING_WISH_REQUEST_ID)
             preferences.remove(Keys.PENDING_WISH_MESSAGE)
+            preferences.remove(Keys.PENDING_WISH_RETRY_ENABLED)
+            accepted = true
+        }
+        return accepted
+    }
+
+    override suspend fun markWishPermanentFailure(requestId: String): Boolean {
+        var accepted = false
+        dataStore.edit { preferences ->
+            if (
+                preferences.wishState != WishState.PENDING_SEND ||
+                preferences[Keys.PENDING_WISH_REQUEST_ID] != requestId
+            ) {
+                return@edit
+            }
+            preferences[Keys.PENDING_WISH_RETRY_ENABLED] = false
             accepted = true
         }
         return accepted
@@ -197,6 +215,7 @@ class DataStoreAppStateRepository(
             wishDraft = preferences[Keys.WISH_DRAFT].orEmpty().take(MAX_WISH_LENGTH),
             pendingWishRequestId = preferences[Keys.PENDING_WISH_REQUEST_ID],
             pendingWishMessage = preferences[Keys.PENDING_WISH_MESSAGE],
+            pendingWishRetryEnabled = preferences[Keys.PENDING_WISH_RETRY_ENABLED] ?: true,
             soundEnabled = preferences[Keys.SOUND_ENABLED] ?: true,
         )
     }
@@ -229,6 +248,7 @@ class DataStoreAppStateRepository(
         val WISH_DRAFT = stringPreferencesKey("wish_draft")
         val PENDING_WISH_REQUEST_ID = stringPreferencesKey("pending_wish_request_id")
         val PENDING_WISH_MESSAGE = stringPreferencesKey("pending_wish_message")
+        val PENDING_WISH_RETRY_ENABLED = booleanPreferencesKey("pending_wish_retry_enabled")
         val SOUND_ENABLED = booleanPreferencesKey("sound_enabled")
     }
 

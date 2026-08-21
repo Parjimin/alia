@@ -159,11 +159,13 @@ class DataStoreAppStateRepositoryTest {
         val pendingState = repository.state.first { it.wishState == WishState.PENDING_SEND }
         assertEquals(REQUEST_ID, pendingState.pendingWishRequestId)
         assertEquals("something good", pendingState.pendingWishMessage)
+        assertTrue(pendingState.pendingWishRetryEnabled)
 
         assertTrue(repository.markWishSent(REQUEST_ID))
         val sent = repository.state.first { it.wishState == WishState.SENT }
         assertEquals(null, sent.pendingWishRequestId)
         assertEquals(null, sent.pendingWishMessage)
+        assertTrue(sent.pendingWishRetryEnabled)
     }
 
     @Test
@@ -181,6 +183,22 @@ class DataStoreAppStateRepositoryTest {
         )
         assertFalse(repository.markWishSent(OTHER_REQUEST_ID))
         assertEquals(WishState.PENDING_SEND, repository.state.first().wishState)
+    }
+
+    @Test
+    fun permanentFailurePreservesPayloadAndDisablesFutureRecovery() = runTest {
+        repository.updateWishDraft("safe but not retryable")
+        assertTrue(repository.sealWish())
+        repository.prepareWishSend(REQUEST_ID)
+
+        assertFalse(repository.markWishPermanentFailure(OTHER_REQUEST_ID))
+        assertTrue(repository.markWishPermanentFailure(REQUEST_ID))
+
+        val state = repository.state.first()
+        assertEquals(WishState.PENDING_SEND, state.wishState)
+        assertEquals(REQUEST_ID, state.pendingWishRequestId)
+        assertEquals("safe but not retryable", state.pendingWishMessage)
+        assertFalse(state.pendingWishRetryEnabled)
     }
 
     private companion object {

@@ -37,6 +37,7 @@ data class AppState(
     val wishDraft: String = "",
     val pendingWishRequestId: String? = null,
     val pendingWishMessage: String? = null,
+    val pendingWishRetryEnabled: Boolean = true,
     val soundEnabled: Boolean = true,
 ) {
     val mainDiscoveryCount: Int

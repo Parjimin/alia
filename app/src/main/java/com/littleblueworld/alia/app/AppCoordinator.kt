@@ -30,7 +30,7 @@ import com.littleblueworld.alia.world.WorldActions
 import com.littleblueworld.alia.world.WorldProgression
 import com.littleblueworld.alia.world.WorldScreenFactory
 import com.littleblueworld.alia.wish.WishActions
-import com.littleblueworld.alia.wish.WishRepository
+import com.littleblueworld.alia.wish.WishDeliveryOrchestrator
 import com.littleblueworld.alia.wish.WishScreenFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,7 +46,7 @@ class AppCoordinator(
     screenHost: ViewGroup,
     globalOverlayHost: ViewGroup,
     private val stateRepository: AppStateRepository,
-    private val wishRepository: WishRepository,
+    private val wishDeliveryOrchestrator: WishDeliveryOrchestrator,
     private val content: BirthdayContent,
 ) {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
@@ -78,6 +78,7 @@ class AppCoordinator(
                 latestState = state
                 if (!initialScreenShown) {
                     initialScreenShown = true
+                    wishDeliveryOrchestrator.recoverPendingWish(state)
                     transitionController.setInitial(createScreen(navigator.current))
                 } else {
                     transitionController.render(state)
@@ -213,7 +214,7 @@ class AppCoordinator(
                 },
                 sealWish = stateRepository::sealWish,
                 keepLocal = stateRepository::keepWishLocal,
-                sendWish = wishRepository::sendSealedWish,
+                sendWish = wishDeliveryOrchestrator::sendSealedWish,
                 goBack = ::popCurrentScreen,
                 continueToFinale = { replace(ScreenId.FINAL_MESSAGE) },
             ),
