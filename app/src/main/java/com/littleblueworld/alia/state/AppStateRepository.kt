@@ -25,6 +25,8 @@ interface AppStateRepository {
 
     suspend fun markWishSent(requestId: String): Boolean
 
+    suspend fun markWishPermanentFailure(requestId: String): Boolean
+
     suspend fun markFinaleCompleted()
 }
 

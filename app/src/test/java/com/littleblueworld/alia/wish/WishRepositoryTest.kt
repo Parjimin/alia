@@ -62,19 +62,81 @@ class WishRepositoryTest {
         assertEquals(listOf(REQUEST_ID, REQUEST_ID), submissions.map { it.requestId })
     }
 
+    @Test
+    fun `worker retry reads persisted request without generating a new id`() = runTest {
+        val stateRepository = FakeStateRepository()
+        stateRepository.prepareWishSend(REQUEST_ID)
+        var generated = false
+        var uploaded: WishSubmission? = null
+        val repository = WishRepository(
+            stateRepository = stateRepository,
+            wishApi = WishApi { submission ->
+                uploaded = submission
+                WishApiResult.Duplicate
+            },
+            requestIdFactory = {
+                generated = true
+                OTHER_REQUEST_ID
+            },
+        )
+
+        assertEquals(WishSendResult.Sent, repository.retryPendingWish())
+        assertFalse(generated)
+        assertEquals(REQUEST_ID, uploaded?.requestId)
+    }
+
+    @Test
+    fun `permanent API failure disables later worker retry but preserves payload`() = runTest {
+        val stateRepository = FakeStateRepository()
+        val repository = WishRepository(
+            stateRepository = stateRepository,
+            wishApi = WishApi { WishApiResult.PermanentFailure },
+            requestIdFactory = { REQUEST_ID },
+        )
+
+        assertEquals(WishSendResult.PendingPermanentFailure, repository.sendSealedWish())
+        assertFalse(stateRepository.currentState.pendingWishRetryEnabled)
+        assertEquals(WishSendResult.Rejected, repository.retryPendingWish())
+        assertEquals(REQUEST_ID, stateRepository.currentState.pendingWishRequestId)
+    }
+
     private class FakeStateRepository : AppStateRepository {
-        override val state: Flow<AppState> = MutableStateFlow(AppState())
+        private val mutableState = MutableStateFlow(AppState())
+        override val state: Flow<AppState> = mutableState
+        val currentState: AppState get() = mutableState.value
         private var pendingWish: PendingWish? = null
         var markSentCalled = false
         var markedRequestId: String? = null
 
         override suspend fun prepareWishSend(newRequestId: String): PendingWish =
-            pendingWish ?: PendingWish(newRequestId, "a little wish").also { pendingWish = it }
+            pendingWish ?: PendingWish(newRequestId, "a little wish").also {
+                pendingWish = it
+                mutableState.value = mutableState.value.copy(
+                    wishState = com.littleblueworld.alia.state.WishState.PENDING_SEND,
+                    pendingWishRequestId = it.requestId,
+                    pendingWishMessage = it.message,
+                    pendingWishRetryEnabled = true,
+                )
+            }
 
         override suspend fun markWishSent(requestId: String): Boolean {
             markSentCalled = true
             markedRequestId = requestId
-            return pendingWish?.requestId == requestId
+            val accepted = pendingWish?.requestId == requestId
+            if (accepted) {
+                mutableState.value = mutableState.value.copy(
+                    wishState = com.littleblueworld.alia.state.WishState.SENT,
+                    pendingWishRequestId = null,
+                    pendingWishMessage = null,
+                )
+            }
+            return accepted
+        }
+
+        override suspend fun markWishPermanentFailure(requestId: String): Boolean {
+            if (pendingWish?.requestId != requestId) return false
+            mutableState.value = mutableState.value.copy(pendingWishRetryEnabled = false)
+            return true
         }
 
         override suspend fun markOpened() = Unit
