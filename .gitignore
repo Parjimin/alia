@@ -1,0 +1,20 @@
+*.iml
+.gradle/
+.kotlin/
+.idea/
+local.properties
+
+build/
+app/build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+*.apk
+*.aab
+*.apks
+*.jks
+*.keystore
+
+# Local Codex/emulator verification artifacts
+m0-launch*.png

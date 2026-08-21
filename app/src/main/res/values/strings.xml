@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Little Blue World</string>
+    <string name="boot_loading_star_description">A little star waking up the world</string>
+    <string name="world_camera_description">Open Alia Archive</string>
+    <string name="world_bottle_description">Open Message Bottles</string>
+    <string name="world_star_description">Open Collectible Stars</string>
+    <string name="world_cafe_description">Open Tiny Café</string>
+    <string name="world_shell_description">Explore shell</string>
+    <string name="world_fish_description">Tap the swimming fish</string>
+    <string name="world_author_description">Open About the Author</string>
+    <string name="world_wish_description">Open Make a Wish</string>
+    <string name="gallery_back_description">Back to Little Blue World</string>
+    <string name="gallery_index_format">%1$02d / %2$02d</string>
+    <string name="message_back_description">Back to Little Blue World</string>
+    <string name="message_close_description">Close message</string>
+    <string name="message_bottle_description">Open message bottle %1$d of %2$d</string>
+    <string name="message_bottle_number">BOTTLE %1$02d</string>
+    <string name="message_bottle_01">01</string>
+    <string name="message_bottle_02">02</string>
+    <string name="message_bottle_03">03</string>
+    <string name="message_bottle_04">04</string>
+    <string name="star_back_description">Back to Little Blue World</string>
+    <string name="star_close_description">Close star message</string>
+    <string name="star_collect_description">Collect %1$s</string>
+    <string name="star_collected_description">%1$s collected</string>
+    <string name="cafe_back_description">Back to Little Blue World</string>
+    <string name="cafe_tea_description">Choose imaginary tea</string>
+    <string name="cafe_coffee_description">Choose imaginary coffee</string>
+    <string name="wish_back_description">Back to Little Blue World</string>
+    <string name="wish_star_description">Open your wish</string>
+    <string name="wish_counter_format">%1$d / 500</string>
+    <string name="wish_hold_description">Hold to seal your wish</string>
+    <string name="wish_input_label">what are you wishing for?</string>
+    <string name="m1_foundation_preview">M1 FOUNDATION PREVIEW</string>
+    <string name="m1_back_hint">System Back returns to the previous scene.</string>
+    <string name="m1_temporary_description">Temporary navigation surface. The production scene arrives in %1$s.</string>
+    <string name="m1_state_summary">%1$d / 4 main discoveries · %2$s · %3$s</string>
+    <string name="m1_wish_locked">wish locked</string>
+    <string name="m1_wish_unlocked">wish unlocked</string>
+    <string name="m1_first_visit">first visit</string>
+    <string name="m1_returning">returning</string>
+    <string name="m1_post_finale">post-finale</string>
+</resources>

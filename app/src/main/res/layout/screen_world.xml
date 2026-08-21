@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/world_day" />
+
+    <com.littleblueworld.alia.world.WorldSceneLayout
+        android:id="@+id/world_scene_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <ImageView
+            android:id="@+id/cloud_far"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.72"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/cloud_01" />
+
+        <ImageView
+            android:id="@+id/cloud_near"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.82"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/cloud_02" />
+
+        <FrameLayout
+            android:id="@+id/cafe_landmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/cafe" />
+
+            <View
+                android:id="@+id/cafe_visited_marker"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/world_discovered_marker"
+                android:importantForAccessibility="no"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/camera_landmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/camera" />
+
+            <View
+                android:id="@+id/camera_visited_marker"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/world_discovered_marker"
+                android:importantForAccessibility="no"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/wish_landmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no">
+
+            <ImageView
+                android:id="@+id/wish_marker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/loading_star" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/star_landmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/star" />
+
+            <View
+                android:id="@+id/star_visited_marker"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/world_discovered_marker"
+                android:importantForAccessibility="no"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/bottle_landmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bottle" />
+
+            <View
+                android:id="@+id/bottle_visited_marker"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/world_discovered_marker"
+                android:importantForAccessibility="no"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/author_note_landmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/author_note" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/shell_landmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/shell" />
+        </FrameLayout>
+
+    </com.littleblueworld.alia.world.WorldSceneLayout>
+
+    <FrameLayout
+        android:id="@+id/fish_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:importantForAccessibility="no">
+
+        <FrameLayout
+            android:id="@+id/fish_touch"
+            android:layout_width="96dp"
+            android:layout_height="64dp"
+            android:clickable="true"
+            android:contentDescription="@string/world_fish_description"
+            android:focusable="true"
+            android:padding="4dp"
+            android:visibility="invisible">
+
+            <ImageView
+                android:id="@+id/fish_art"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no"
+                android:scaleType="fitCenter"
+                android:src="@drawable/fish" />
+
+        </FrameLayout>
+
+        <com.littleblueworld.alia.world.FishBubbleView
+            android:id="@+id/fish_bubbles"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no" />
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/world_dim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="@color/deep_navy"
+        android:importantForAccessibility="no" />
+
+    <com.littleblueworld.alia.world.AmbientEffectsView
+        android:id="@+id/ambient_effects"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no" />
+
+    <TextView
+        android:id="@+id/world_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:accessibilityLiveRegion="polite"
+        android:layout_gravity="center"
+        android:alpha="0"
+        android:background="@drawable/world_hint_background"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="4dp"
+        android:maxWidth="292dp"
+        android:paddingHorizontal="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
+        android:textColor="@color/deep_navy"
+        android:textSize="14sp"
+        android:translationY="72dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/world_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/world_hint_background"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="4dp"
+        android:maxWidth="312dp"
+        android:paddingHorizontal="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
+        android:textColor="@color/deep_navy"
+        android:textSize="14sp" />
+
+</FrameLayout>

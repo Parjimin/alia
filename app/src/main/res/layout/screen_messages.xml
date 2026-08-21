@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/message_pale">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_gravity="bottom"
+        android:background="@color/ocean_blue"
+        android:importantForAccessibility="no" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="14dp"
+        android:background="@color/sky_blue"
+        android:importantForAccessibility="no" />
+
+    <com.littleblueworld.alia.messages.MessageBottleFieldLayout
+        android:id="@+id/bottle_field"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <FrameLayout
+            android:id="@+id/bottle_01"
+            android:layout_width="104dp"
+            android:layout_height="144dp"
+            android:background="@drawable/message_bottle_touch_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp">
+            <ImageView
+                android:layout_width="76dp"
+                android:layout_height="108dp"
+                android:layout_gravity="top|center_horizontal"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bottle" />
+            <TextView
+                android:layout_width="42dp"
+                android:layout_height="24dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@drawable/message_bottle_number_background"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:importantForAccessibility="no"
+                android:text="@string/message_bottle_01"
+                android:textColor="@color/deep_navy"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/bottle_02"
+            android:layout_width="104dp"
+            android:layout_height="144dp"
+            android:background="@drawable/message_bottle_touch_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp">
+            <ImageView
+                android:layout_width="76dp"
+                android:layout_height="108dp"
+                android:layout_gravity="top|center_horizontal"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bottle" />
+            <TextView
+                android:layout_width="42dp"
+                android:layout_height="24dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@drawable/message_bottle_number_background"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:importantForAccessibility="no"
+                android:text="@string/message_bottle_02"
+                android:textColor="@color/deep_navy"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/bottle_03"
+            android:layout_width="104dp"
+            android:layout_height="144dp"
+            android:background="@drawable/message_bottle_touch_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp">
+            <ImageView
+                android:layout_width="76dp"
+                android:layout_height="108dp"
+                android:layout_gravity="top|center_horizontal"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bottle" />
+            <TextView
+                android:layout_width="42dp"
+                android:layout_height="24dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@drawable/message_bottle_number_background"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:importantForAccessibility="no"
+                android:text="@string/message_bottle_03"
+                android:textColor="@color/deep_navy"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/bottle_04"
+            android:layout_width="104dp"
+            android:layout_height="144dp"
+            android:background="@drawable/message_bottle_touch_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp">
+            <ImageView
+                android:layout_width="76dp"
+                android:layout_height="108dp"
+                android:layout_gravity="top|center_horizontal"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bottle" />
+            <TextView
+                android:layout_width="42dp"
+                android:layout_height="24dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@drawable/message_bottle_number_background"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:importantForAccessibility="no"
+                android:text="@string/message_bottle_04"
+                android:textColor="@color/deep_navy"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+    </com.littleblueworld.alia.messages.MessageBottleFieldLayout>
+
+    <ImageButton
+        android:id="@+id/messages_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/gallery_back_background"
+        android:contentDescription="@string/message_back_description"
+        android:padding="14dp"
+        android:src="@drawable/gallery_back_icon" />
+
+    <FrameLayout
+        android:id="@+id/message_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/message_scrim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/deep_navy"
+            android:clickable="true"
+            android:contentDescription="@string/message_close_description"
+            android:focusable="true" />
+
+        <LinearLayout
+            android:id="@+id/message_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/message_panel_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:importantForAccessibility="no"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="18dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="26dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/message_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="monospace"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="0.08"
+                    android:textColor="@color/soft_purple"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+                <ImageButton
+                    android:id="@+id/message_close"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/message_close_description"
+                    android:padding="14dp"
+                    android:src="@drawable/message_close_icon" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/message_first_beat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="sans-serif"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/deep_navy"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/message_remainder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="sans-serif"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/deep_navy"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>
